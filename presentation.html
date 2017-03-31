@@ -65,7 +65,8 @@
             <header><h1>Presenter Notes</h1></header>
             <section>
             
-              <p>Giving Prodigy perspective on this tool, there's a lot more that we don't use, but I can only give some of the
+              <p>Non-dev friendly talk</p>
+<p>Giving Prodigy perspective on this tool, there's a lot more that we don't use, but I can only give some of the
 possibilities, and I don't want to cover too much that's not immediately useful</p>
 <p>Need to give some background, stick with me before I get to real code, hopefully explain why we need to be
 able to do this stuff, and be able to transfer principles to whatever the next tool is.</p>
@@ -80,7 +81,7 @@ able to do this stuff, and be able to transfer principles to whatever the next t
             </aside>
             
             <aside class="page_number">
-              1/15
+              1/17
             </aside>
           </footer>
         </div>
@@ -121,7 +122,7 @@ code, then I started to dev.  </p>
             </aside>
             
             <aside class="page_number">
-              2/15
+              2/17
             </aside>
           </footer>
         </div>
@@ -138,7 +139,7 @@ code, then I started to dev.  </p>
             <section><ol>
 <li>get servers</li>
 <li>install stuff</li>
-<li>Copy the code</li>
+<li>Copy the app</li>
 <li>so much winning, now over the Internet</li>
 </ol></section>
             
@@ -161,7 +162,7 @@ So that means we have to have a server on the Internet.</p>
             </aside>
             
             <aside class="page_number">
-              3/15
+              3/17
             </aside>
           </footer>
         </div>
@@ -200,7 +201,7 @@ instance, then some stuff needs to be installed on it, and then we move our code
             </aside>
             
             <aside class="page_number">
-              4/15
+              4/17
             </aside>
           </footer>
         </div>
@@ -211,13 +212,13 @@ instance, then some stuff needs to be installed on it, and then we move our code
         <div class="slide slide-5">
           <div class="inner">
             
-            <header><h2>Cloud deployment with Prodigy's devops tools</h2></header>
+            <header><h2>Automated cloud deployment</h2></header>
             
             
             <section><ol>
 <li>get instance on AWS EC2 (Terraform) </li>
 <li>install stuff (Ansible + Docker)</li>
-<li>Copy the app (Also Docker?)</li>
+<li>Copy the app (Docker + ?)</li>
 <li>so much winning, now automated</li>
 </ol></section>
             
@@ -228,8 +229,6 @@ instance, then some stuff needs to be installed on it, and then we move our code
             
               <p>Here we've substituted human stuff with tools to automate the process. Last week we used Terraform to start up
 instances, this week we're looking at Ansible to install stuff in step 2. </p>
-<p>I'm being a bit hand wavy here and non-specific beyond step 2, there are some complications introduced by
-Docker that can be a problem for the next week's speaker.</p>
             
             </section>
           </div>
@@ -241,7 +240,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              5/15
+              5/17
             </aside>
           </footer>
         </div>
@@ -266,6 +265,16 @@ Docker that can be a problem for the next week's speaker.</p>
             <header><h1>Presenter Notes</h1></header>
             <section>
             
+              <ul>
+<li>humans make mistakes when they click</li>
+<li>humans are inconsistent... imagine if deploying one app required a user, 'deploy',
+    another 'deploy_user': which one do I use for this app? Is it broken because it's broken or just
+    because I used the wrong user?</li>
+<li>humans don't make backups - when the server dies, the old code needs a similarly configured replacement. If a human did it, the only record of how the old server
+    was configured WAS THE OLD SERVER THAT JUST DIED. Records are also important for version control.</li>
+</ul>
+<p>... and the more times they have to do something in a row, the more bored lazy tired the humans get</p>
+            
             </section>
           </div>
           <footer>
@@ -276,7 +285,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              6/15
+              6/17
             </aside>
           </footer>
         </div>
@@ -284,19 +293,75 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-7">
+        <div class="slide has_code slide-7">
           <div class="inner">
             
             <header><h1>Finally some ansible</h1></header>
             
+            
+            <section><p>example/ansible/roles/python/tasks/main.yml</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">update apt-get</span>
+<span class="lineno">2 </span>  <span class="l l-Scalar l-Scalar-Plain">raw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sudo apt-get -y update</span>
+<span class="lineno">3 </span>
+<span class="lineno">4 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install python2</span>
+<span class="lineno">5 </span>  <span class="l l-Scalar l-Scalar-Plain">raw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sudo apt-get -y install python python-pip python-setuptools</span>
+</pre></div>
+</section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
             
-              <p>show ansible project:</p>
-<p>site.yaml calls add_user role with user_name variable</p>
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-8">
+          <div class="inner">
+            
+            <header><h1>Some more ansible</h1></header>
+            
+            
+            <section><p>example/ansible/demo.yml</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">demo</span>
+<span class="lineno">2 </span>  <span class="l l-Scalar l-Scalar-Plain">remote_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+<span class="lineno">3 </span>  <span class="l l-Scalar l-Scalar-Plain">become</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="lineno">4 </span>  <span class="l l-Scalar l-Scalar-Plain">gather_facts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+<span class="lineno">5 </span>  <span class="l l-Scalar l-Scalar-Plain">roles</span><span class="p p-Indicator">:</span>
+<span class="lineno">6 </span>    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="nv">python</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>TODO:</p>
+<p>create demo.yaml DONE
+Document setup in readme.md
+  make them run terraform apply to create instance so that inventory.sh can get the variables
+  make them have an AWS key / secret for terraform
+  ?? make them create a demo key + .pem for ~/.ssh to connect to box
+  make them copy their public key from ~/.ssh/id_rsa.pub to keys/deploy.pub</p>
+<p>make sure output.tf file is present in repo
+instuctions present on this slide to fill in some small piece of Ruby
+user add copies public key to box</p>
 <p>Run ansible and then login with user just created</p>
             
             </section>
@@ -309,30 +374,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              7/15
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source:  -->
-      <div class="slide-wrapper">
-        <div class="slide slide-">
-          <div class="inner">
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            
-            <aside class="page_number">
-              /15
+              8/17
             </aside>
           </footer>
         </div>
@@ -340,7 +382,45 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-8">
+        <div class="slide slide-9">
+          <div class="inner">
+            
+            <header><h1>What else can you do in step 2?</h1></header>
+            
+            
+            <section><ol>
+<li>get instance on AWS EC2 (Terraform) </li>
+<li>install stuff (Ansible + Docker)</li>
+<li>Copy the app (Docker + ?)</li>
+<li>so much winning, now automated</li>
+</ol></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>Not sure about this slide</p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/17
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-10">
           <div class="inner">
             
             <header><h1>Why is Ansible a good choice for this?</h1></header>
@@ -366,7 +446,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              8/15
+              10/17
             </aside>
           </footer>
         </div>
@@ -374,7 +454,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide has_code slide-9">
+        <div class="slide has_code slide-11">
           <div class="inner">
             
             <header><h1>Declarative</h1></header>
@@ -411,7 +491,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              9/15
+              11/17
             </aside>
           </footer>
         </div>
@@ -419,7 +499,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-10">
+        <div class="slide slide-12">
           <div class="inner">
             
             <header><h1>Playbooks</h1></header>
@@ -442,7 +522,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              10/15
+              12/17
             </aside>
           </footer>
         </div>
@@ -450,7 +530,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-11">
+        <div class="slide slide-13">
           <div class="inner">
             
             <header><h1>Roles</h1></header>
@@ -471,7 +551,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              11/15
+              13/17
             </aside>
           </footer>
         </div>
@@ -479,7 +559,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-12">
+        <div class="slide slide-14">
           <div class="inner">
             
             <header><h1>Templates</h1></header>
@@ -500,7 +580,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              12/15
+              14/17
             </aside>
           </footer>
         </div>
@@ -508,7 +588,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-13">
+        <div class="slide slide-15">
           <div class="inner">
             
             <header><h1>Variables</h1></header>
@@ -529,7 +609,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              13/15
+              15/17
             </aside>
           </footer>
         </div>
@@ -537,7 +617,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-14">
+        <div class="slide slide-16">
           <div class="inner">
             
             <header><h1>Dependencies</h1></header>
@@ -558,7 +638,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              14/15
+              16/17
             </aside>
           </footer>
         </div>
@@ -566,7 +646,7 @@ Docker that can be a problem for the next week's speaker.</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-15">
+        <div class="slide slide-17">
           <div class="inner">
             
             <header><h1>Copying files</h1></header>
@@ -587,7 +667,7 @@ Docker that can be a problem for the next week's speaker.</p>
             </aside>
             
             <aside class="page_number">
-              15/15
+              17/17
             </aside>
           </footer>
         </div>
@@ -624,7 +704,7 @@ Docker that can be a problem for the next week's speaker.</p>
         </tr>
         
         <tr id="toc-row-5" class="sub">
-          <th><a href="#slide:5">Cloud deployment with Prodigy's devops tools</a></th>
+          <th><a href="#slide:5">Automated cloud deployment</a></th>
           <td><a href="#slide:5">5</a></td>
         </tr>
         
@@ -642,50 +722,62 @@ Docker that can be a problem for the next week's speaker.</p>
       
       
       <tr id="toc-row-8">
-        <th><a href="#slide:8">Why is Ansible a good choice for this?</a></th>
+        <th><a href="#slide:8">Some more ansible</a></th>
         <td><a href="#slide:8">8</a></td>
       </tr>
       
       
       <tr id="toc-row-9">
-        <th><a href="#slide:9">Declarative</a></th>
+        <th><a href="#slide:9">What else can you do in step 2?</a></th>
         <td><a href="#slide:9">9</a></td>
       </tr>
       
       
       <tr id="toc-row-10">
-        <th><a href="#slide:10">Playbooks</a></th>
+        <th><a href="#slide:10">Why is Ansible a good choice for this?</a></th>
         <td><a href="#slide:10">10</a></td>
       </tr>
       
       
       <tr id="toc-row-11">
-        <th><a href="#slide:11">Roles</a></th>
+        <th><a href="#slide:11">Declarative</a></th>
         <td><a href="#slide:11">11</a></td>
       </tr>
       
       
       <tr id="toc-row-12">
-        <th><a href="#slide:12">Templates</a></th>
+        <th><a href="#slide:12">Playbooks</a></th>
         <td><a href="#slide:12">12</a></td>
       </tr>
       
       
       <tr id="toc-row-13">
-        <th><a href="#slide:13">Variables</a></th>
+        <th><a href="#slide:13">Roles</a></th>
         <td><a href="#slide:13">13</a></td>
       </tr>
       
       
       <tr id="toc-row-14">
-        <th><a href="#slide:14">Dependencies</a></th>
+        <th><a href="#slide:14">Templates</a></th>
         <td><a href="#slide:14">14</a></td>
       </tr>
       
       
       <tr id="toc-row-15">
-        <th><a href="#slide:15">Copying files</a></th>
+        <th><a href="#slide:15">Variables</a></th>
         <td><a href="#slide:15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide:16">Dependencies</a></th>
+        <td><a href="#slide:16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide:17">Copying files</a></th>
+        <td><a href="#slide:17">17</a></td>
       </tr>
       
       

@@ -2,6 +2,8 @@
 
 # Presenter Notes
 
+Non-dev friendly talk
+
 Giving Prodigy perspective on this tool, there's a lot more that we don't use, but I can only give some of the
 possibilities, and I don't want to cover too much that's not immediately useful
 
@@ -30,7 +32,7 @@ code, then I started to dev.
 
   1. get servers
   2. install stuff
-  3. Copy the code
+  3. Copy the app
   4. so much winning, now over the Internet
 
 # Presenter Notes
@@ -56,20 +58,17 @@ instance, then some stuff needs to be installed on it, and then we move our code
   
 ---
 
-## Cloud deployment with Prodigy's devops tools
+## Automated cloud deployment
 
   1. get instance on AWS EC2 (Terraform) 
   2. install stuff (Ansible + Docker)
-  3. Copy the app (Also Docker?)
+  3. Copy the app (Docker + ?)
   4. so much winning, now automated
 
 # Presenter Notes
 
 Here we've substituted human stuff with tools to automate the process. Last week we used Terraform to start up
 instances, this week we're looking at Ansible to install stuff in step 2. 
-
-I'm being a bit hand wavy here and non-specific beyond step 2, there are some complications introduced by
-Docker that can be a problem for the next week's speaker.
 
 ---
 
@@ -78,21 +77,6 @@ Docker that can be a problem for the next week's speaker.
   - humans make mistakes when they click
   - humans are inconsistent
   - humans don't naturally record what they did
-
----
-# Finally some ansible
-
-# Presenter Notes
-
-show ansible project:
-
-site.yaml calls add_user role with user_name variable
-
-Document terraform setup in readme.md, make sure output.tf file is present, make them run terraform apply to create instance so that inventory.sh can get the variables
-
-Run ansible and then login with user just created
-
----
 
 # Presenter Notes
 
@@ -104,6 +88,59 @@ Run ansible and then login with user just created
     was configured WAS THE OLD SERVER THAT JUST DIED. Records are also important for version control.
 
 ... and the more times they have to do something in a row, the more bored lazy tired the humans get
+
+---
+# Finally some ansible
+example/ansible/roles/python/tasks/main.yml
+
+    !yaml
+    - name: update apt-get
+      raw: sudo apt-get -y update
+
+    - name: install python2
+      raw: sudo apt-get -y install python python-pip python-setuptools
+
+---
+# Some more ansible
+example/ansible/demo.yml
+
+    !yaml
+    - hosts: demo
+      remote_user: ubuntu
+      become: true
+      gather_facts: no
+      roles:
+        - { role: python }
+
+# Presenter Notes
+
+TODO:
+
+create demo.yaml DONE
+Document setup in readme.md
+  make them run terraform apply to create instance so that inventory.sh can get the variables
+  make them have an AWS key / secret for terraform
+  ?? make them create a demo key + .pem for ~/.ssh to connect to box
+  make them copy their public key from ~/.ssh/id_rsa.pub to keys/deploy.pub
+
+make sure output.tf file is present in repo
+instuctions present on this slide to fill in some small piece of Ruby
+user add copies public key to box
+
+Run ansible and then login with user just created
+
+---
+
+# What else can you do in step 2?
+
+  1. get instance on AWS EC2 (Terraform) 
+  2. install stuff (Ansible + Docker)
+  3. Copy the app (Docker + ?)
+  4. so much winning, now automated
+
+# Presenter Notes
+
+Not sure about this slide
 
 ---
 

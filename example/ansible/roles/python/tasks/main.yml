@@ -1,0 +1,7 @@
+---
+
+- name: update apt-get
+  raw: sudo apt-get -y update
+
+- name: install python2
+  raw: sudo apt-get -y install python python-pip python-setuptools
