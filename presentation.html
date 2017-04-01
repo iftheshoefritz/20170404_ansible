@@ -299,12 +299,12 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             <header><h1>Finally some ansible</h1></header>
             
             
-            <section><p>example/ansible/roles/python/tasks/main.yml</p>
-<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">update apt-get</span>
-<span class="lineno">2 </span>  <span class="l l-Scalar l-Scalar-Plain">raw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sudo apt-get -y update</span>
-<span class="lineno">3 </span>
-<span class="lineno">4 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install python2</span>
-<span class="lineno">5 </span>  <span class="l l-Scalar l-Scalar-Plain">raw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sudo apt-get -y install python python-pip python-setuptools</span>
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="c1">#example/ansible/roles/python/tasks/main.yml</span>
+<span class="lineno">2 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">update apt-get</span>
+<span class="lineno">3 </span>  <span class="l l-Scalar l-Scalar-Plain">raw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sudo apt-get -y update</span>
+<span class="lineno">4 </span>
+<span class="lineno">5 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install python2</span>
+<span class="lineno">6 </span>  <span class="l l-Scalar l-Scalar-Plain">raw</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">sudo apt-get -y install python python-pip python-setuptools</span>
 </pre></div>
 </section>
             
@@ -337,13 +337,13 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             <header><h1>Some more ansible</h1></header>
             
             
-            <section><p>example/ansible/demo.yml</p>
-<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">demo</span>
-<span class="lineno">2 </span>  <span class="l l-Scalar l-Scalar-Plain">remote_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
-<span class="lineno">3 </span>  <span class="l l-Scalar l-Scalar-Plain">become</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="lineno">4 </span>  <span class="l l-Scalar l-Scalar-Plain">gather_facts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
-<span class="lineno">5 </span>  <span class="l l-Scalar l-Scalar-Plain">roles</span><span class="p p-Indicator">:</span>
-<span class="lineno">6 </span>    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="nv">python</span> <span class="p p-Indicator">}</span>
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="c1">#example/ansible/demo.yml</span>
+<span class="lineno">2 </span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">demo</span>
+<span class="lineno">3 </span>  <span class="l l-Scalar l-Scalar-Plain">remote_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+<span class="lineno">4 </span>  <span class="l l-Scalar l-Scalar-Plain">become</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="lineno">5 </span>  <span class="l l-Scalar l-Scalar-Plain">gather_facts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+<span class="lineno">6 </span>  <span class="l l-Scalar l-Scalar-Plain">roles</span><span class="p p-Indicator">:</span>
+<span class="lineno">7 </span>    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="nv">python</span> <span class="p p-Indicator">}</span>
 </pre></div>
 </section>
             

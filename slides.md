@@ -91,9 +91,9 @@ instances, this week we're looking at Ansible to install stuff in step 2.
 
 ---
 # Finally some ansible
-example/ansible/roles/python/tasks/main.yml
 
     !yaml
+    #example/ansible/roles/python/tasks/main.yml
     - name: update apt-get
       raw: sudo apt-get -y update
 
@@ -102,9 +102,9 @@ example/ansible/roles/python/tasks/main.yml
 
 ---
 # Some more ansible
-example/ansible/demo.yml
 
     !yaml
+    #example/ansible/demo.yml
     - hosts: demo
       remote_user: ubuntu
       become: true
