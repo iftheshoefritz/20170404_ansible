@@ -17,11 +17,11 @@ Terraform needs the right access to AWS in order to create instances.
 
 Get an AWS key + secret for your IAM user. Copy these into `example/terraform/terraform.tfvars`:
 
-    ```
-    # don't commit to git - linked to your IAM user
-    aws_access_key = "YOUR_ACCESS_KEY_HERE"
-    aws_secret_key = "YOUR_SECRET_HERE"
-    ```
+```
+# don't commit to git - linked to your IAM user
+aws_access_key = "YOUR_ACCESS_KEY_HERE"
+aws_secret_key = "YOUR_SECRET_HERE"
+```
 
 #### Create a public/private key pair to install on the new machine
 We have to be able to log into the machine, so Terraform has to copy a public key to the machine.
