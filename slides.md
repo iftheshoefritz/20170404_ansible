@@ -119,10 +119,10 @@ TODO:
 
 create demo.yaml DONE
 Document setup in readme.md
-  make them run terraform apply to create instance so that inventory.sh can get the variables
-  make them have an AWS key / secret for terraform
-  ?? make them create a demo key + .pem for ~/.ssh to connect to box
-  make them copy their public key from ~/.ssh/id_rsa.pub to keys/deploy.pub
+  make them run terraform apply to create instance so that inventory.sh can get the variables DONE
+  make them have an AWS key / secret for terraform DONE
+  ?? make them copy a demo key + .pem into ~/.ssh for Ansible to connect to box
+  make them copy their public key from ~/.ssh/id_rsa.pub to ansible/keys/deploy.pub
 
 make sure output.tf file is present in repo
 instuctions present on this slide to fill in some small piece of Ruby
