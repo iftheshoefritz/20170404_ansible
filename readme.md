@@ -8,7 +8,7 @@ Before the talk you need to:
 git clone git@github.com:iftheshoefritz/20170404_ansible.git
 ```
 
-### Create the machine
+### Create an EC2 instance with correct credentials
 
 Since Ansible is a tool for configuring machines, we need a machine to configure. Terraform does this for us.
 
