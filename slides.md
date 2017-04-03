@@ -32,7 +32,7 @@ code, then I started to dev.
 
   1. get servers
   2. install stuff
-  3. Copy the app
+  3. Copy the code
   4. so much winning, now over the Internet
 
 # Presenter Notes
@@ -40,7 +40,8 @@ code, then I started to dev.
 Almost all of our apps are web applications accessed by users with their web browsers over the Internet.
 So that means we have to have a server on the Internet.
 
-We still have similar 4 steps - get a computer, install stuff, get the code, lots of winning
+We still have similar 4 steps - get a computer, install stuff, get the code, lots of winning. They look a bit
+different, e.g. the machine you need comes from a hosting provider
 
 ---
 
@@ -48,7 +49,7 @@ We still have similar 4 steps - get a computer, install stuff, get the code, lot
 
   1. get instance on AWS EC2
   2. install stuff
-  3. Copy the app
+  3. Copy the code
   4. so much winning, now in the cloud
 
 # Presenter Notes
@@ -62,7 +63,7 @@ instance, then some stuff needs to be installed on it, and then we move our code
 
   1. get instance on AWS EC2 (Terraform) 
   2. install stuff (Ansible + Docker)
-  3. Copy the app (Docker + ?)
+  3. Copy the code (Docker + ?)
   4. so much winning, now automated
 
 # Presenter Notes
