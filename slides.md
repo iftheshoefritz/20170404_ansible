@@ -106,7 +106,7 @@ instances, this week we're looking at Ansible to install stuff in step 2.
 This is a role. Role is an abstraction for a set of configuration steps that Ansible will take. You could
 think about it as, "machines will play this role".
 
-In this case the role is just running some bash commands to install Python 2. Most of Ansible's cool stuff won't workif there is no Python on the machine.
+In this case the role is just running some bash commands to install Python 2. Most of Ansible's cool stuff won't workif there is no Python on the machine. But once we have it we can write stuff in a much nicer way than bash.
 
 ---
 # Some more ansible
@@ -198,10 +198,10 @@ We can do a bunch of other stuff.
 
 ### good abstractions (e.g. roles, modules)
 
-Allows you to write code that is:
+Allows you to script configuration that is:
+- portable
 - idempotent
 - declarative
-- portable
 
 # Presenter Notes
 
@@ -210,17 +210,17 @@ Actually wrote the user role originally for a CentOS box, no changes to code for
 Also switched between vagrant and EC2 easily. 
 
 Idempotent:
-Run as many times 
+Run as many times as you want with the same result
 
-declarative: 
+Declarative: 
 see next slide
 
 ---
 
-# Bonus CS: Declarative
+# Bonus CS: Imperative vs. Declarative
 
     !ruby
-    # telling you how to get the answer I want
+    # imperative - telling you how to get the answer I want
     def odd_numbers(my_list)
       output = []
       for i in 0..my_list.length - 1
@@ -228,7 +228,9 @@ see next slide
       end
       output
     end
-    
+
+# Bonus CS: Imperative vs. Declarative
+
     # declarative - telling you what I want
     def odd_numbers(my_list)
       my_list.select { |n| n.odd? }
@@ -239,25 +241,9 @@ see next slide
 TODO : look up declarative CSS -> is that a good example?
 
 ---
+Other Ansible tricks
 
-# Playbooks
-
-##test
----
-
-# Roles
----
-
-# Templates
---- 
-
-# Variables
----
-
-# Dependencies
----
-
-# Inventory
----
-# Copying files
-
+### Templates
+### Inventory
+### Copying files
+### Vault
