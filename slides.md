@@ -101,6 +101,13 @@ instances, this week we're looking at Ansible to install stuff in step 2.
     - name: install python2
       raw: sudo apt-get -y install python python-pip python-setuptools
 
+# Presenter Notes
+
+This is a role. Role is an abstraction for a set of configuration steps that Ansible will take. You could
+think about it as, "machines will play this role".
+
+In this case the role is just running some bash commands to install Python 2. Most of Ansible's cool stuff won't workif there is no Python on the machine.
+
 ---
 # Some more ansible
 
@@ -115,49 +122,102 @@ instances, this week we're looking at Ansible to install stuff in step 2.
 
 # Presenter Notes
 
+This is a playbook. You can think of a playbook as a collection of roles. In this case we're just running the role we just created. At the top of the file we're saying run this against the demo instance we got Terraform to create.
+
 TODO:
+  create branch with complete version, then remove role and demo.yml
 
-create demo.yaml DONE
-Document setup in readme.md
-  make them run terraform apply to create instance so that inventory.sh can get the variables DONE
-  make them have an AWS key / secret for terraform DONE
-  ?? make them copy a demo key + .pem into ~/.ssh for Ansible to connect to box
-  make them copy their public key from ~/.ssh/id_rsa.pub to ansible/keys/deploy.pub
+---
+# Run Ansible
 
-make sure output.tf file is present in repo
-instuctions present on this slide to fill in some small piece of Ruby
-user add copies public key to box
+    !bash
+    > ansible-playbook demo.yml --private-key ~/.ssh/alice_key.pem
 
-Run ansible and then login with user just created
+(point to `.pem` file you created when setting up)
+
+---
+# Run Ansible
+
+    !bash
+    > ansible-playbook demo.yml --private-key ~/.ssh/fritz_ec2_dev.pem
+
+    PLAY [demo] ********************************************************************
+
+    TASK [python : update apt-get] *************************************************
+    changed: [54.93.229.175]
+
+    TASK [python : install python2] ************************************************
+    changed: [54.93.229.175]
+
+    PLAY RECAP *********************************************************************
+    54.93.229.175              : ok=2    changed=2    unreachable=0    failed=0
+
+---
+# More complex role:
+
+Copy YOUR public key (e.g. `~/.ssh/id_rsa.pub`) to `example/ansible/keys/deploy.pub` (or symlink)
+
+Add to `demo.yml`:
+
+    !yaml
+    - { role: user, tags: user, name: deploy, comment: "Deploy User"  }
+
+Now SSH to deploy@...
+
+# Presenter notes
+
+Run ansible and then login with user just created.
+
+This addition controls the user role. Let's look at that.
+
+Note the use of Ansible built in user module
+Note the use of Ansible variable syntax. We can also use a role more than once. Add a user named now app.
 
 ---
 
-# What else can you do in step 2?
+# What other kinds of configuration can Ansible do:
 
-  1. get instance on AWS EC2 (Terraform) 
-  2. install stuff (Ansible + Docker)
-  3. Copy the app (Docker + ?)
-  4. so much winning, now automated
+- nginx
+- git
+- postgres
+- firewalls
+- stop / start services
+- anything bash can do
 
 # Presenter Notes
 
-Not sure about this slide
+We can do a bunch of other stuff. 
+
+(if I have time to anonymise) - here's an example Rails project where I did everything in Ansible.
 
 ---
 
-# Why is Ansible a good choice for this?
+# What are Ansible's strengths
 
-## easy to read
+### easy to read
 
-## no agent on server
+### good abstractions (e.g. roles, modules)
 
-## idempotent
+Allows you to write code that is:
+- idempotent
+- declarative
+- portable
 
-## declarative
+# Presenter Notes
+
+Portable:
+Actually wrote the user role originally for a CentOS box, no changes to code for this Ubuntu EC2 instance.
+Also switched between vagrant and EC2 easily. 
+
+Idempotent:
+Run as many times 
+
+declarative: 
+see next slide
 
 ---
 
-# Declarative
+# Bonus CS: Declarative
 
     !ruby
     # telling you how to get the answer I want
@@ -173,6 +233,10 @@ Not sure about this slide
     def odd_numbers(my_list)
       my_list.select { |n| n.odd? }
     end
+
+# Presenter Notes
+
+TODO : look up declarative CSS -> is that a good example?
 
 ---
 
@@ -193,5 +257,7 @@ Not sure about this slide
 # Dependencies
 ---
 
+# Inventory
+---
 # Copying files
 
