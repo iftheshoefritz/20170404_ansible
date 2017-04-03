@@ -4,7 +4,9 @@ Before the talk you need to:
 
 ### Clone the source to your local machine
 
-````git clone git@github.com:iftheshoefritz/20170404_ansible.git```
+```
+git clone git@github.com:iftheshoefritz/20170404_ansible.git
+```
 
 ### Create the machine
 
