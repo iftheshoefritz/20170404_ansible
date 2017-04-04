@@ -1,7 +1,0 @@
-- hosts: demo
-  remote_user: ubuntu
-  become: true
-  gather_facts: no
-  roles:
-    - { role: python }
-    - { role: user, tags: user, name: deploy, comment: "Deploy User"  }
