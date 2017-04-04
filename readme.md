@@ -54,4 +54,11 @@ host_tags = {
 }
 ```
 
+#### Make sure you have Ansible installed!!!
+
+```
+sudo easy_install pip
+sudo pip install ansible
+```
+
 Now you are ready for the talk :).
