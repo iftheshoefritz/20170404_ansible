@@ -258,15 +258,10 @@ Just be aware that sometimes you really do care about exactly how things are don
 
 # Declarative / Portable / Idempotent Ansible
 
-```
-- name: Enable unicorn-myapp
-  service:  name=unicorn-myapp
-            state=started
-```
-
-Compare 
-
-`/etc/init.d/unicorn-myapp start`
+    - name: Enable unicorn-myapp
+      service:  name=unicorn-myapp
+                state=started
+Or: `/etc/init.d/unicorn-myapp start`
 
 # Presenter Notes
 
@@ -299,9 +294,9 @@ We can do a bunch of other stuff.
 - install docker-py
 
 ---
-Other Ansible tricks
+# Other Ansible tricks
 
-### Templates
-### Inventory
-### Copying files
-### Vault
+- Templates
+- Inventory
+- Copying files
+- Vault

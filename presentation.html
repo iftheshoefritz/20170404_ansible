@@ -674,11 +674,11 @@ end
             <header><h1>Declarative / Portable / Idempotent Ansible</h1></header>
             
             
-            <section><p><code>- name: Enable unicorn-myapp
+            <section><pre><code>- name: Enable unicorn-myapp
   service:  name=unicorn-myapp
-            state=started</code></p>
-<p>Compare </p>
-<p><code>/etc/init.d/unicorn-myapp start</code></p></section>
+            state=started
+</code></pre>
+<p>Or: <code>/etc/init.d/unicorn-myapp start</code></p></section>
             
           </div>
           <div class="presenter_notes">
@@ -788,12 +788,15 @@ end
         <div class="slide slide-19">
           <div class="inner">
             
-            <header><h3>Templates</h3></header>
+            <header><h1>Other Ansible tricks</h1></header>
             
             
-            <section><h3>Inventory</h3>
-<h3>Copying files</h3>
-<h3>Vault</h3></section>
+            <section><ul>
+<li>Templates</li>
+<li>Inventory</li>
+<li>Copying files</li>
+<li>Vault</li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -931,7 +934,7 @@ end
       
       
       <tr id="toc-row-19">
-        <th><a href="#slide:19">-</a></th>
+        <th><a href="#slide:19">Other Ansible tricks</a></th>
         <td><a href="#slide:19">19</a></td>
       </tr>
       
