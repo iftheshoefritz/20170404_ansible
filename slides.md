@@ -152,8 +152,10 @@ TODO:
     PLAY RECAP *********************************************************************
     54.93.229.175              : ok=2    changed=2    unreachable=0    failed=0
 
+Check that python did actually install using: `ssh -i ~/.ssh/alice_key.pem ubuntu@54.93.229.175`
+
 ---
-# More complex role:
+# Add another user
 
 Copy YOUR public key (e.g. `~/.ssh/id_rsa.pub`) to `example/ansible/keys/deploy.pub` (or symlink)
 
@@ -162,37 +164,40 @@ Add to `demo.yml`:
     !yaml
     - { role: user, tags: user, name: deploy, comment: "Deploy User"  }
 
-Now SSH to deploy@...
+Now run `ansible-playbook ....` and try SSH to deploy@...
 
 # Presenter notes
 
+We're going to use a role that I wrote, then I'm going to explain it to you. Add this stuff into demo.yml.
 Run ansible and then login with user just created.
+
+---
+# User role
+
+`example/ansible/roles/user/tasks/main.yml`
+
+# Presenter notes
 
 This addition controls the user role. Let's look at that.
 
-Note the use of Ansible built in user module
-Note the use of Ansible variable syntax. We can also use a role more than once. Add a user named now app.
+Note the use of Ansible variable syntax. 
 
----
+1. use the built in user module to create a user. We've added variables to this role, so it can be 
+used in multiple contexts.
+2. create .ssh directory for the new user
+3. add the key file in the local keys/ directory to the authorized keys for the user
 
-# What other kinds of configuration can Ansible do:
+In general using the built in user modules will be more portable than writing raw bash.
 
-- nginx
-- git
-- postgres
-- firewalls
-- stop / start services
-- anything bash can do
+We can also use a role more than once. Add a user named now app.
 
-# Presenter Notes
-
-We can do a bunch of other stuff. 
-
-(if I have time to anonymise) - here's an example Rails project where I did everything in Ansible.
+SSH to deploy user again and check out ~/.ssh/authorized_keys
 
 ---
 
 # What are Ansible's strengths
+
+### no agent on server
 
 ### easy to read
 
@@ -210,7 +215,7 @@ Actually wrote the user role originally for a CentOS box, no changes to code for
 Also switched between vagrant and EC2 easily. 
 
 Idempotent:
-Run as many times as you want with the same result
+Run as many times as you want with the same result. So if you admin multiple machines, and you add some new ones, when you run your playbook against all of them, it doesn't matter which ones you ran the playbook on already and which ones are new.
 
 Declarative: 
 see next slide
@@ -229,6 +234,8 @@ see next slide
       output
     end
 
+---
+
 # Bonus CS: Imperative vs. Declarative
 
     # declarative - telling you what I want
@@ -238,7 +245,58 @@ see next slide
 
 # Presenter Notes
 
-TODO : look up declarative CSS -> is that a good example?
+Most people prefer declarative code because:
+
+- often more readable
+- details that you don't care about are hidden and can change without affecting this code
+
+SQL is a great example of declarative language, you just say "select id from books" - you know very little about how books are stored. The storage engine can change without you querying, the query optimiser can decide whether to use an index or not.
+
+Just be aware that sometimes you really do care about exactly how things are done.
+
+---
+
+# Declarative / Portable / Idempotent Ansible
+
+```
+- name: Enable unicorn-myapp
+  service:  name=unicorn-myapp
+            state=started
+```
+
+Compare 
+
+`/etc/init.d/unicorn-myapp start`
+
+# Presenter Notes
+
+- The bash command is not portable - different nix flavours start services differently. 
+- It is not idempotent, if you run it while the service is running, it will give you an error.
+- there is an argument to be had about declarative ... you have to know about `etc/init.d`
+
+---
+
+# What other kinds of configuration can Ansible do:
+
+- nginx
+- git
+- postgres
+- firewalls
+- stop / start services
+- anything bash can do
+
+# Presenter Notes
+
+We can do a bunch of other stuff. 
+
+---
+
+# Ansible at Prodigy
+
+- install python
+- install docker
+- install docker-compose
+- install docker-py
 
 ---
 Other Ansible tricks

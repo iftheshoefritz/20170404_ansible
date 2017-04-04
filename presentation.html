@@ -81,7 +81,7 @@ able to do this stuff, and be able to transfer principles to whatever the next t
             </aside>
             
             <aside class="page_number">
-              1/17
+              1/19
             </aside>
           </footer>
         </div>
@@ -92,7 +92,7 @@ able to do this stuff, and be able to transfer principles to whatever the next t
         <div class="slide slide-2">
           <div class="inner">
             
-            <header><h1>Doing stuff with code</h1></header>
+            <header><h1>Coding on your own machine</h1></header>
             
             
             <section><ol>
@@ -122,7 +122,7 @@ code, then I started to dev.  </p>
             </aside>
             
             <aside class="page_number">
-              2/17
+              2/19
             </aside>
           </footer>
         </div>
@@ -139,7 +139,7 @@ code, then I started to dev.  </p>
             <section><ol>
 <li>get servers</li>
 <li>install stuff</li>
-<li>Copy the app</li>
+<li>Copy the code</li>
 <li>so much winning, now over the Internet</li>
 </ol></section>
             
@@ -150,7 +150,8 @@ code, then I started to dev.  </p>
             
               <p>Almost all of our apps are web applications accessed by users with their web browsers over the Internet.
 So that means we have to have a server on the Internet.</p>
-<p>We still have similar 4 steps - get a computer, install stuff, get the code, lots of winning</p>
+<p>We still have similar 4 steps - get a computer, install stuff, get the code, lots of winning. They look a bit
+different, e.g. the machine you need comes from a hosting provider</p>
             
             </section>
           </div>
@@ -162,7 +163,7 @@ So that means we have to have a server on the Internet.</p>
             </aside>
             
             <aside class="page_number">
-              3/17
+              3/19
             </aside>
           </footer>
         </div>
@@ -179,7 +180,7 @@ So that means we have to have a server on the Internet.</p>
             <section><ol>
 <li>get instance on AWS EC2</li>
 <li>install stuff</li>
-<li>Copy the app</li>
+<li>Copy the code</li>
 <li>so much winning, now in the cloud</li>
 </ol></section>
             
@@ -201,7 +202,7 @@ instance, then some stuff needs to be installed on it, and then we move our code
             </aside>
             
             <aside class="page_number">
-              4/17
+              4/19
             </aside>
           </footer>
         </div>
@@ -218,7 +219,7 @@ instance, then some stuff needs to be installed on it, and then we move our code
             <section><ol>
 <li>get instance on AWS EC2 (Terraform) </li>
 <li>install stuff (Ansible + Docker)</li>
-<li>Copy the app (Docker + ?)</li>
+<li>Copy the code (Docker + ?)</li>
 <li>so much winning, now automated</li>
 </ol></section>
             
@@ -240,7 +241,7 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             </aside>
             
             <aside class="page_number">
-              5/17
+              5/19
             </aside>
           </footer>
         </div>
@@ -285,7 +286,7 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             </aside>
             
             <aside class="page_number">
-              6/17
+              6/19
             </aside>
           </footer>
         </div>
@@ -313,6 +314,10 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             <header><h1>Presenter Notes</h1></header>
             <section>
             
+              <p>This is a role. Role is an abstraction for a set of configuration steps that Ansible will take. You could
+think about it as, "machines will play this role".</p>
+<p>In this case the role is just running some bash commands to install Python 2. Most of Ansible's cool stuff won't workif there is no Python on the machine. But once we have it we can write stuff in a much nicer way than bash.</p>
+            
             </section>
           </div>
           <footer>
@@ -323,7 +328,7 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             </aside>
             
             <aside class="page_number">
-              7/17
+              7/19
             </aside>
           </footer>
         </div>
@@ -352,17 +357,9 @@ instances, this week we're looking at Ansible to install stuff in step 2. </p>
             <header><h1>Presenter Notes</h1></header>
             <section>
             
-              <p>TODO:</p>
-<p>create demo.yaml DONE
-Document setup in readme.md
-  make them run terraform apply to create instance so that inventory.sh can get the variables
-  make them have an AWS key / secret for terraform
-  ?? make them create a demo key + .pem for ~/.ssh to connect to box
-  make them copy their public key from ~/.ssh/id_rsa.pub to keys/deploy.pub</p>
-<p>make sure output.tf file is present in repo
-instuctions present on this slide to fill in some small piece of Ruby
-user add copies public key to box</p>
-<p>Run ansible and then login with user just created</p>
+              <p>This is a playbook. You can think of a playbook as a collection of roles. In this case we're just running the role we just created. At the top of the file we're saying run this against the demo instance we got Terraform to create.</p>
+<p>TODO:
+  create branch with complete version, then remove role and demo.yml</p>
             
             </section>
           </div>
@@ -374,7 +371,7 @@ user add copies public key to box</p>
             </aside>
             
             <aside class="page_number">
-              8/17
+              8/19
             </aside>
           </footer>
         </div>
@@ -382,54 +379,16 @@ user add copies public key to box</p>
       
       <!-- slide source: slides.md -->
       <div class="slide-wrapper">
-        <div class="slide slide-9">
+        <div class="slide has_code slide-9">
           <div class="inner">
             
-            <header><h1>What else can you do in step 2?</h1></header>
+            <header><h1>Run Ansible</h1></header>
             
             
-            <section><ol>
-<li>get instance on AWS EC2 (Terraform) </li>
-<li>install stuff (Ansible + Docker)</li>
-<li>Copy the app (Docker + ?)</li>
-<li>so much winning, now automated</li>
-</ol></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-              <p>Not sure about this slide</p>
-            
-            </section>
-          </div>
-          <footer>
-            
-            
-            <aside class="source">
-              Source: <a href="slides.md">slides.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              9/17
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: slides.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-10">
-          <div class="inner">
-            
-            <header><h1>Why is Ansible a good choice for this?</h1></header>
-            
-            
-            <section><h2>easy to read</h2>
-<h2>no agent on server</h2>
-<h2>idempotent</h2>
-<h2>declarative</h2></section>
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span>&gt; ansible-playbook demo.yml --private-key ~/.ssh/alice_key.pem
+</pre></div>
+
+<p>(point to <code>.pem</code> file you created when setting up)</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -446,7 +405,52 @@ user add copies public key to box</p>
             </aside>
             
             <aside class="page_number">
-              10/17
+              9/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-10">
+          <div class="inner">
+            
+            <header><h1>Run Ansible</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno"> 1 </span>&gt; ansible-playbook demo.yml --private-key ~/.ssh/fritz_ec2_dev.pem
+<span class="lineno"> 2 </span>
+<span class="lineno"> 3 </span>PLAY <span class="o">[</span>demo<span class="o">]</span> ********************************************************************
+<span class="lineno"> 4 </span>
+<span class="lineno"> 5 </span>TASK <span class="o">[</span>python : update apt-get<span class="o">]</span> *************************************************
+<span class="lineno"> 6 </span>changed: <span class="o">[</span><span class="m">54</span>.93.229.175<span class="o">]</span>
+<span class="lineno"> 7 </span>
+<span class="lineno"> 8 </span>TASK <span class="o">[</span>python : install python2<span class="o">]</span> ************************************************
+<span class="lineno"> 9 </span>changed: <span class="o">[</span><span class="m">54</span>.93.229.175<span class="o">]</span>
+<span class="lineno">10 </span>
+<span class="lineno">11 </span>PLAY RECAP *********************************************************************
+<span class="lineno">12 </span><span class="m">54</span>.93.229.175              : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">2</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+
+<p>Check that python did actually install using: <code>ssh -i ~/.ssh/alice_key.pem ubuntu@54.93.229.175</code></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/19
             </aside>
           </footer>
         </div>
@@ -457,22 +461,144 @@ user add copies public key to box</p>
         <div class="slide has_code slide-11">
           <div class="inner">
             
-            <header><h1>Declarative</h1></header>
+            <header><h1>Add another user</h1></header>
             
             
-            <section><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="c1"># telling you how to get the answer I want</span>
-<span class="lineno"> 2 </span><span class="k">def</span> <span class="nf">odd_numbers</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
-<span class="lineno"> 3 </span>  <span class="n">output</span> <span class="o">=</span> <span class="o">[]</span>
-<span class="lineno"> 4 </span>  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="n">my_list</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="lineno"> 5 </span>    <span class="n">output</span> <span class="o">&lt;&lt;</span> <span class="n">my_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="k">if</span> <span class="n">my_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
-<span class="lineno"> 6 </span>  <span class="k">end</span>
-<span class="lineno"> 7 </span>  <span class="n">output</span>
-<span class="lineno"> 8 </span><span class="k">end</span>
-<span class="lineno"> 9 </span>
-<span class="lineno">10 </span><span class="c1"># declarative - telling you what I want</span>
-<span class="lineno">11 </span><span class="k">def</span> <span class="nf">odd_numbers</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
-<span class="lineno">12 </span>  <span class="n">my_list</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="n">n</span><span class="o">.</span><span class="n">odd?</span> <span class="p">}</span>
-<span class="lineno">13 </span><span class="k">end</span>
+            <section><p>Copy YOUR public key (e.g. <code>~/.ssh/id_rsa.pub</code>) to <code>example/ansible/keys/deploy.pub</code> (or symlink)</p>
+<p>Add to <code>demo.yml</code>:</p>
+<div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="nv">user</span><span class="p p-Indicator">,</span> <span class="nv">tags</span><span class="p p-Indicator">:</span> <span class="nv">user</span><span class="p p-Indicator">,</span> <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">deploy</span><span class="p p-Indicator">,</span> <span class="nv">comment</span><span class="p p-Indicator">:</span> <span class="s">&quot;Deploy</span><span class="nv"> </span><span class="s">User&quot;</span>  <span class="p p-Indicator">}</span>
+</pre></div>
+
+<p>Now run <code>ansible-playbook ....</code> and try SSH to deploy@...</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>We're going to use a role that I wrote, then I'm going to explain it to you. Add this stuff into demo.yml.
+Run ansible and then login with user just created.</p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-12">
+          <div class="inner">
+            
+            <header><h1>User role</h1></header>
+            
+            
+            <section><p><code>example/ansible/roles/user/tasks/main.yml</code></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>This addition controls the user role. Let's look at that.</p>
+<p>Note the use of Ansible variable syntax. </p>
+<ol>
+<li>use the built in user module to create a user. We've added variables to this role, so it can be 
+used in multiple contexts.</li>
+<li>create .ssh directory for the new user</li>
+<li>add the key file in the local keys/ directory to the authorized keys for the user</li>
+</ol>
+<p>In general using the built in user modules will be more portable than writing raw bash.</p>
+<p>We can also use a role more than once. Add a user named now app.</p>
+<p>SSH to deploy user again and check out ~/.ssh/authorized_keys</p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-13">
+          <div class="inner">
+            
+            <header><h1>What are Ansible's strengths</h1></header>
+            
+            
+            <section><h3>no agent on server</h3>
+<h3>easy to read</h3>
+<h3>good abstractions (e.g. roles, modules)</h3>
+<p>Allows you to script configuration that is:
+- portable
+- idempotent
+- declarative</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>Portable:
+Actually wrote the user role originally for a CentOS box, no changes to code for this Ubuntu EC2 instance.
+Also switched between vagrant and EC2 easily. </p>
+<p>Idempotent:
+Run as many times as you want with the same result. So if you admin multiple machines, and you add some new ones, when you run your playbook against all of them, it doesn't matter which ones you ran the playbook on already and which ones are new.</p>
+<p>Declarative: 
+see next slide</p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code slide-14">
+          <div class="inner">
+            
+            <header><h1>Bonus CS: Imperative vs. Declarative</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="c1"># imperative - telling you how to get the answer I want</span>
+<span class="lineno">2 </span><span class="k">def</span> <span class="nf">odd_numbers</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+<span class="lineno">3 </span>  <span class="n">output</span> <span class="o">=</span> <span class="o">[]</span>
+<span class="lineno">4 </span>  <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="n">my_list</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="lineno">5 </span>    <span class="n">output</span> <span class="o">&lt;&lt;</span> <span class="n">my_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="k">if</span> <span class="n">my_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="lineno">6 </span>  <span class="k">end</span>
+<span class="lineno">7 </span>  <span class="n">output</span>
+<span class="lineno">8 </span><span class="k">end</span>
 </pre></div>
 </section>
             
@@ -491,96 +617,7 @@ user add copies public key to box</p>
             </aside>
             
             <aside class="page_number">
-              11/17
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: slides.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-12">
-          <div class="inner">
-            
-            <header><h1>Playbooks</h1></header>
-            
-            
-            <section><h2>test</h2></section>
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            
-            <aside class="source">
-              Source: <a href="slides.md">slides.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              12/17
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: slides.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-13">
-          <div class="inner">
-            
-            <header><h1>Roles</h1></header>
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            
-            <aside class="source">
-              Source: <a href="slides.md">slides.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              13/17
-            </aside>
-          </footer>
-        </div>
-      </div>
-      
-      <!-- slide source: slides.md -->
-      <div class="slide-wrapper">
-        <div class="slide slide-14">
-          <div class="inner">
-            
-            <header><h1>Templates</h1></header>
-            
-            
-          </div>
-          <div class="presenter_notes">
-            <header><h1>Presenter Notes</h1></header>
-            <section>
-            
-            </section>
-          </div>
-          <footer>
-            
-            
-            <aside class="source">
-              Source: <a href="slides.md">slides.md</a>
-            </aside>
-            
-            <aside class="page_number">
-              14/17
+              14/19
             </aside>
           </footer>
         </div>
@@ -591,13 +628,27 @@ user add copies public key to box</p>
         <div class="slide slide-15">
           <div class="inner">
             
-            <header><h1>Variables</h1></header>
+            <header><h1>Bonus CS: Imperative vs. Declarative</h1></header>
             
+            
+            <section><pre><code># declarative - telling you what I want
+def odd_numbers(my_list)
+  my_list.select { |n| n.odd? }
+end
+</code></pre></section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <p>Most people prefer declarative code because:</p>
+<ul>
+<li>often more readable</li>
+<li>details that you don't care about are hidden and can change without affecting this code</li>
+</ul>
+<p>SQL is a great example of declarative language, you just say "select id from books" - you know very little about how books are stored. The storage engine can change without you querying, the query optimiser can decide whether to use an index or not.</p>
+<p>Just be aware that sometimes you really do care about exactly how things are done.</p>
             
             </section>
           </div>
@@ -609,7 +660,7 @@ user add copies public key to box</p>
             </aside>
             
             <aside class="page_number">
-              15/17
+              15/19
             </aside>
           </footer>
         </div>
@@ -620,13 +671,25 @@ user add copies public key to box</p>
         <div class="slide slide-16">
           <div class="inner">
             
-            <header><h1>Dependencies</h1></header>
+            <header><h1>Declarative / Portable / Idempotent Ansible</h1></header>
             
+            
+            <section><p><code>- name: Enable unicorn-myapp
+  service:  name=unicorn-myapp
+            state=started</code></p>
+<p>Compare </p>
+<p><code>/etc/init.d/unicorn-myapp start</code></p></section>
             
           </div>
           <div class="presenter_notes">
             <header><h1>Presenter Notes</h1></header>
             <section>
+            
+              <ul>
+<li>The bash command is not portable - different nix flavours start services differently. </li>
+<li>It is not idempotent, if you run it while the service is running, it will give you an error.</li>
+<li>there is an argument to be had about declarative ... you have to know about <code>etc/init.d</code></li>
+</ul>
             
             </section>
           </div>
@@ -638,7 +701,7 @@ user add copies public key to box</p>
             </aside>
             
             <aside class="page_number">
-              16/17
+              16/19
             </aside>
           </footer>
         </div>
@@ -649,8 +712,55 @@ user add copies public key to box</p>
         <div class="slide slide-17">
           <div class="inner">
             
-            <header><h1>Copying files</h1></header>
+            <header><h1>What other kinds of configuration can Ansible do:</h1></header>
             
+            
+            <section><ul>
+<li>nginx</li>
+<li>git</li>
+<li>postgres</li>
+<li>firewalls</li>
+<li>stop / start services</li>
+<li>anything bash can do</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+              <p>We can do a bunch of other stuff. </p>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-18">
+          <div class="inner">
+            
+            <header><h1>Ansible at Prodigy</h1></header>
+            
+            
+            <section><ul>
+<li>install python</li>
+<li>install docker</li>
+<li>install docker-compose</li>
+<li>install docker-py</li>
+</ul></section>
             
           </div>
           <div class="presenter_notes">
@@ -667,7 +777,40 @@ user add copies public key to box</p>
             </aside>
             
             <aside class="page_number">
-              17/17
+              18/19
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.md -->
+      <div class="slide-wrapper">
+        <div class="slide slide-19">
+          <div class="inner">
+            
+            <header><h3>Templates</h3></header>
+            
+            
+            <section><h3>Inventory</h3>
+<h3>Copying files</h3>
+<h3>Vault</h3></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            
+            <aside class="source">
+              Source: <a href="slides.md">slides.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/19
             </aside>
           </footer>
         </div>
@@ -688,7 +831,7 @@ user add copies public key to box</p>
       
       
       <tr id="toc-row-2">
-        <th><a href="#slide:2">Doing stuff with code</a></th>
+        <th><a href="#slide:2">Coding on your own machine</a></th>
         <td><a href="#slide:2">2</a></td>
       </tr>
       
@@ -728,56 +871,68 @@ user add copies public key to box</p>
       
       
       <tr id="toc-row-9">
-        <th><a href="#slide:9">What else can you do in step 2?</a></th>
+        <th><a href="#slide:9">Run Ansible</a></th>
         <td><a href="#slide:9">9</a></td>
       </tr>
       
       
       <tr id="toc-row-10">
-        <th><a href="#slide:10">Why is Ansible a good choice for this?</a></th>
+        <th><a href="#slide:10">Run Ansible</a></th>
         <td><a href="#slide:10">10</a></td>
       </tr>
       
       
       <tr id="toc-row-11">
-        <th><a href="#slide:11">Declarative</a></th>
+        <th><a href="#slide:11">Add another user</a></th>
         <td><a href="#slide:11">11</a></td>
       </tr>
       
       
       <tr id="toc-row-12">
-        <th><a href="#slide:12">Playbooks</a></th>
+        <th><a href="#slide:12">User role</a></th>
         <td><a href="#slide:12">12</a></td>
       </tr>
       
       
       <tr id="toc-row-13">
-        <th><a href="#slide:13">Roles</a></th>
+        <th><a href="#slide:13">What are Ansible's strengths</a></th>
         <td><a href="#slide:13">13</a></td>
       </tr>
       
       
       <tr id="toc-row-14">
-        <th><a href="#slide:14">Templates</a></th>
+        <th><a href="#slide:14">Bonus CS: Imperative vs. Declarative</a></th>
         <td><a href="#slide:14">14</a></td>
       </tr>
       
       
       <tr id="toc-row-15">
-        <th><a href="#slide:15">Variables</a></th>
+        <th><a href="#slide:15">Bonus CS: Imperative vs. Declarative</a></th>
         <td><a href="#slide:15">15</a></td>
       </tr>
       
       
       <tr id="toc-row-16">
-        <th><a href="#slide:16">Dependencies</a></th>
+        <th><a href="#slide:16">Declarative / Portable / Idempotent Ansible</a></th>
         <td><a href="#slide:16">16</a></td>
       </tr>
       
       
       <tr id="toc-row-17">
-        <th><a href="#slide:17">Copying files</a></th>
+        <th><a href="#slide:17">What other kinds of configuration can Ansible do:</a></th>
         <td><a href="#slide:17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide:18">Ansible at Prodigy</a></th>
+        <td><a href="#slide:18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide:19">-</a></th>
+        <td><a href="#slide:19">19</a></td>
       </tr>
       
       
