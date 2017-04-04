@@ -300,3 +300,9 @@ We can do a bunch of other stuff.
 - Inventory
 - Copying files
 - Vault
+
+---
+
+# Do not forget to:
+
+`terraform destroy`
