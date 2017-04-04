@@ -11,7 +11,7 @@ Need to give some background, stick with me before I get to real code, hopefully
 able to do this stuff, and be able to transfer principles to whatever the next tool is.
 
 ---
-# Doing stuff with code
+# Coding on your own machine
 
   1. get new machine - Macbook from Rob
   2. get it ready for an app - install e.g. git, ruby, postgres, vim
